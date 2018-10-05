@@ -1,5 +1,39 @@
 <?php
 
+Route::resource('/painel/produtos', 'Painel\ProdutoController');
+
+Route::group(['namespace' => 'Site'], function(){
+    Route::get('/categoria2/{id?}', 'SiteController@categoriaOp');
+    Route::get('/categoria/{id}', 'SiteController@categoria');
+    Route::get('/contato', 'SiteController@contato');
+    Route::get('/', 'SiteController@index');
+});
+
+/*
+Route::group(['prefix' => 'painel', 'middleware' => 'auth'], function(){
+    Route::get('/users', function(){
+        return 'Controle de Users';
+    });
+    Route::get('/financeiro', function(){
+        return 'Finaceiro Painel';
+    });
+    Route::get('/', function(){
+        return 'Dashboard';
+    });
+});
+
+Route::get('/login', function(){
+    return 'login';
+})->name('login');
+
+Route::get('/categoria2/{idCat?}', function($idCat=1){
+    return "Posts da categoria {$idCat}";
+});
+
+Route::get('/categoria/{idCat}', function($idCat){
+    return "Posts da categoria {$idCat}";
+});
+
 Route::get('/nome/nome2/nome3', function(){
     return 'Rota grande';
 })->name('rota.nomeada');
@@ -27,3 +61,4 @@ Route::get('/empresa', function(){
 Route::get('/', function () {
     return redirect()->route('rota.nomeada');
 });
+*/
