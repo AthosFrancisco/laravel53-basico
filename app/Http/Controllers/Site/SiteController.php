@@ -23,11 +23,22 @@ public function __construct(){
 }
 
     public function index(){
-        return 'Home Page do Site';
+        $title = "Título teste";
+
+        $xss = '<script>alert("Ataque xss");</script>';
+
+        $var1 = '123';
+
+        $arrayData = [1,2,3,4,5,6,7,8,9,10];
+
+        return view('site.home.index', compact('title', 'xss', 'var1', 'arrayData'));
+        //return view('teste', ['teste' => $teste]);
+        //return view('teste');
     }
 
     public function contato(){
-        return 'Contato';
+        $var1 = 10;
+        return view('site.contact.index', compact('var1'));
     }
 
     public function categoria($id){

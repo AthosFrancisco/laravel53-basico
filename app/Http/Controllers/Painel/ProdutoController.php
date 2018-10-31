@@ -4,17 +4,21 @@ namespace App\Http\Controllers\Painel;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Painel\Product;
 
 class ProdutoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    private $product;
+    
+    public function __construct(Product $product) {
+        $this->product = $product;
+    }
+    
+    public function index(Product $product)
     {
-        return 'Listagem dos produtos';
+        $products = $this->product->all();
+        
+        return view('painel.products.index', compact('products'));
     }
 
     /**
@@ -81,5 +85,22 @@ class ProdutoController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function tests(){
+        
+        $prod = $this->product;
+        $prod->name = 'Nome do Produto';
+        $prod->number = 123321;
+        $prod->active = true;
+        $prod->category = 'eletronicos';
+        $prod->description = 'Descricao do Produto aqui';
+        $insert = $prod->save();
+        
+        if($insert){
+            return 'Inserido com sucesso';
+        }else{
+            return 'Falha ao inserir';
+        }
     }
 }
