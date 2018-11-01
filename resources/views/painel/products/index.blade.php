@@ -1,6 +1,6 @@
 <h1>Listagem dos Produtos</h1>
 
-<table>
+<table border="1">
     <tr>
         <th>Nome</th>
         <th>Descrição</th>
